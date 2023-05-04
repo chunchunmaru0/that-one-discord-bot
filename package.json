@@ -1,0 +1,11 @@
+{
+  "name": "that-one-discord-bot",
+  "version": "1.0.0",
+  "description": "Revamped Discord Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "chunchunmaru0",
+  "license": "ISC"
+}
