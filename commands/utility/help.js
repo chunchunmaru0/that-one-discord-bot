@@ -7,6 +7,13 @@ const fs = require("fs");
 
 
 module.exports = {
+    data: new SlashCommandBuilder()
+    .setName('help')
+    .setDescription('Displays the Help of the Bot'),
+    async execute(interaction,client) {
+        //console.log(interaction,client)
+        await interaction.reply("Build in Progress");
+    },
 
     name: "help",
     aliases: ["h", "halp", "commands"],
@@ -72,13 +79,13 @@ function sendEmbed(msgOrInter, client, args) {
         });
 
 
-    if (msgOrInter.mentions.has(client.user.id) || !args[0]) { //not completed dont work with mentions
+    if ( !args[0]) { //not completed dont work with mentions
         const categories = fs.readdirSync("./commands/")
         //console.log(categories)
         exampleEmbed.setDescription(`These are the avaliable commands for ${client.user.username}\nThe bot prefix is: **${prefix}**`)
 
         categories.forEach(category => {
-            //console.log(category)
+            console.log(category)
             const dir = client.commands.filter(c => c.category === category)
             //console.log(dir)
             const capitalise = category.slice(0, 1).toUpperCase() + category.slice(1)
@@ -93,19 +100,19 @@ function sendEmbed(msgOrInter, client, args) {
         })
         return exampleEmbed;
     } else {
-        let command = client.commands.get(client.aliases.get(args[0].toLowerCase()) || args[0].toLowerCase())
-        console.log(command)
-        if (!command) return message.channel.send(embed.setTitle("Invalid Command.").setDescription(`Do \`${prefix}help\` for the list of the commands.`))
+        // let command = client.commands.get(client.aliases.get(args[0].toLowerCase()) || args[0].toLowerCase())
+        // //console.log(command)
+        // if (!command) return message.channel.send(embed.setTitle("Invalid Command.").setDescription(`Do \`${prefix}help\` for the list of the commands.`))
 
 
-        exampleEmbed.setDescription(`The bot's prefix is: \`${prefix}\`\n
-              **Command:** ${command.name.slice(0, 1).toUpperCase() + command.name.slice(1)}
-             **Description:** ${command.description || "No Description provided."}
-              **Usage:** ${command.usage ? `${prefix}${command.name} ${command.usage}` : "No Usage"}
-              **Accessible by:** ${command.accessableby || "Members"}
-             **Aliases:** ${command.aliases ? command.aliases.join(", ") : "None."}`)
+        // exampleEmbed.setDescription(`The bot's prefix is: \`${prefix}\`\n
+        //       **Command:** ${command.name.slice(0, 1).toUpperCase() + command.name.slice(1)}
+        //      **Description:** ${command.description || "No Description provided."}
+        //       **Usage:** ${command.usage ? `${prefix}${command.name} ${command.usage}` : "No Usage"}
+        //       **Accessible by:** ${command.accessableby || "Members"}
+        //      **Aliases:** ${command.aliases ? command.aliases.join(", ") : "None."}`)
 
-        return exampleEmbed;
+        // return exampleEmbed;
     }
 
 

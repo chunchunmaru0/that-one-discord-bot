@@ -8,8 +8,8 @@ module.exports = {
 	async execute(interaction,client) {
 		return interaction.reply({ embeds: [sendEmbed(interaction,client)] });
 	},
-	name: "user",
-	aliases: ["ui", "userinfo"],
+	name: "server",
+	aliases: ["sarvarr", "serv"],
 	usage: "",
 	category: "utility",
 	description: "Shows the info of Server",
