@@ -51,19 +51,37 @@ client.once(Events.ClientReady, () => {
 
 client.on('messageCreate', async message => {
 
-	if (!message.content.startsWith('$')) return
-
-
-	let args = message.content.slice('$'.length).trim().split(/ +/g);
-	let cmd = args.shift().toLowerCase();
-
-
-
-	let commandfile = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd))
-
-	//console.log(commandfile)
 	
-	if (commandfile) commandfile.run(client, message, args)
+	if (message.author.bot) return;
+	
+	if (message.content.includes("@here") || message.content.includes("@everyone") || message.type == "REPLY") return;
+	if (message.mentions.has(client.user.id) || message.content.startsWith('$')) {
+		
+		//console.log(message.content.slice(`<@${client.user.id}> `.length).trim().split(/ +/g));
+		
+		let args = message.content.slice('$'.length).trim().split(/ +/g) || message.content.slice(`<@${client.user.id}> `.length).trim().split(/ +/g)
+		let cmd;
+		if (message.mentions.has(client.user.id)){
+			cmd = (args[1])
+		}else{
+			 cmd = args.shift().toLowerCase();
+		}
+		
+		
+		//console.log(args,cmd)
+	
+	
+		let commandfile = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd))
+	
+		//console.log(commandfile)
+		
+		if (commandfile) commandfile.run(client, message, args)
+	}else {
+		return
+	}
+	
+
+
 
 
 });
