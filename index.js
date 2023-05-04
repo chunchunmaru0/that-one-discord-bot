@@ -24,7 +24,7 @@ client.aliases = new Collection();
 const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
 
-for (const folder of commandFolders) {
+for (const folder of commandFolders) { //searches for commands on every dir
 	const commandsPath = path.join(foldersPath, folder);
 	const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 	for (const file of commandFiles) {
@@ -59,10 +59,10 @@ client.on('messageCreate', async message => {
 		
 		//console.log(message.content.slice(`<@${client.user.id}> `.length).trim().split(/ +/g));
 		
-		let args = message.content.slice('$'.length).trim().split(/ +/g) || message.content.slice(`<@${client.user.id}> `.length).trim().split(/ +/g)
+		let args = message.content.slice('$'.length).trim().split(/ +/g) || message.content.slice(`<@${client.user.id}> `.length).trim().split(/ +/g) //either has prefix and trim it or bot is mentioned and trim it
 		let cmd;
 		if (message.mentions.has(client.user.id)){
-			cmd = (args[1])
+			cmd = (args[1]) //after slicing if the bot is mentioned the command is in 1st index
 		}else{
 			 cmd = args.shift().toLowerCase();
 		}
