@@ -14,10 +14,10 @@ module.exports = {
 
 	name: "user",
 	aliases: ["ui", "userinfo"],
-	usage: "",
+	usage: ' `/user`',
 	category: "general",
 	description: "Shows the info of user",
-	accessableby: "",
+	accessableby: "All",
 
 	run: async (client, message, args) => {
 		/*

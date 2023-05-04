@@ -11,8 +11,8 @@ module.exports = {
 	name: "user",
 	aliases: ["ui", "userinfo"],
 	usage: "",
-	category: "general",
-	description: "Shows the info of user",
+	category: "utility",
+	description: "Shows the info of Server",
 	accessableby: "",
 
 	run: async (client, message, args) => {
