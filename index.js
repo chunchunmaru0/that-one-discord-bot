@@ -71,7 +71,7 @@ client.on('messageCreate', async message => {
 		//console.log(args,cmd)
 	
 	
-		let commandfile = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd))
+		let commandfile = client.commands.get(cmd) || client.commands.find(cmdAl => cmdAl.aliases && cmdAl.aliases.includes(cmd));
 	
 		//console.log(commandfile)
 		
