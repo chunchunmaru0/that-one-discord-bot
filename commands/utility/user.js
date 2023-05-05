@@ -15,7 +15,7 @@ module.exports = {
 	name: "user",
 	aliases: ["ui", "userinfo"],
 	usage: ' `/user`',
-	category: "general",
+	category: "utility",
 	description: "Shows the info of user",
 	accessableby: "All",
 

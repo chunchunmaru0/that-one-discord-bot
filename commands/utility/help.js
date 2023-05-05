@@ -100,19 +100,19 @@ function sendEmbed(msgOrInter, client, args) {
         })
         return exampleEmbed;
     } else {
-        // let command = client.commands.get(client.aliases.get(args[0].toLowerCase()) || args[0].toLowerCase())
-        // //console.log(command)
-        // if (!command) return message.channel.send(embed.setTitle("Invalid Command.").setDescription(`Do \`${prefix}help\` for the list of the commands.`))
+        let command = client.commands.get(client.aliases.get(args[0].toLowerCase()) || args[0].toLowerCase())
+        //console.log(command)
+        if (!command) return message.channel.send(embed.setTitle("Invalid Command.").setDescription(`Do \`${prefix}help\` for the list of the commands.`))
 
 
-        // exampleEmbed.setDescription(`The bot's prefix is: \`${prefix}\`\n
-        //       **Command:** ${command.name.slice(0, 1).toUpperCase() + command.name.slice(1)}
-        //      **Description:** ${command.description || "No Description provided."}
-        //       **Usage:** ${command.usage ? `${prefix}${command.name} ${command.usage}` : "No Usage"}
-        //       **Accessible by:** ${command.accessableby || "Members"}
-        //      **Aliases:** ${command.aliases ? command.aliases.join(", ") : "None."}`)
+        exampleEmbed.setDescription(`The bot's prefix is: \`${prefix}\`\n
+              **Command:** ${command.name.slice(0, 1).toUpperCase() + command.name.slice(1)}
+             **Description:** ${command.description || "No Description provided."}
+              **Usage:** ${command.usage ? `${prefix}${command.name} ${command.usage}` : "No Usage"}
+              **Accessible by:** ${command.accessableby || "Members"}
+             **Aliases:** ${command.aliases ? command.aliases.join(", ") : "None."}`)
 
-        // return exampleEmbed;
+        return exampleEmbed;
     }
 
 

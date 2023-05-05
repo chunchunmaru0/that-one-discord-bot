@@ -11,7 +11,7 @@ module.exports = {
 	name: "ping",
 	aliases: ["p", "ping"],
 	usage: "",
-	category: "general",
+	category: "utility",
 	description: "Replies with Pong!",
 	accessableby: "",
 	run: async (client, message, args) => {

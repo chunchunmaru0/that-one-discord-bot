@@ -11,7 +11,7 @@ module.exports = {
 	name: "server",
 	aliases: ["sarvarr", "serv"],
 	usage: "",
-	category: "utility",
+	category: "moderation",
 	description: "Shows the info of Server",
 	accessableby: "",
 
