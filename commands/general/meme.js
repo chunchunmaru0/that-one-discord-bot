@@ -9,7 +9,7 @@ module.exports = {
     .setDescription('Replies with User with MEMEs!'),
     async execute(interaction,client) {
         //console.log(interaction,client)
-        await interaction.deferReply();
+        await interaction.deferReply({ ephemeral: false });
         await interaction.editReply({files: [{ attachment: await imgSend() }]});
     },
     name: "meme",
@@ -65,7 +65,7 @@ async function  imgSend(){
                     var rng = Math.floor(Math.random() * children.length - 3 + 1) + 3;
                     console.log("children number = " + children.length)
                     console.log("Meme rng is" + rng)
-                    if(rng ===25) {rng=0}
+                    if(rng ==25) {rng=0}
                     var imgFile = imgUrl[rng];
                     if (imgFile.startsWith("https://v.")) {
                         imgFile = imgFile + "/DASH_96.mp4"

@@ -16,6 +16,17 @@ module.exports = {
 
     run: async (client, message, args) => {
         //code here
+        const sEmbed = new EmbedBuilder()
+        .setColor('#C32B4E')
+        .setAuthor({name: "Error!", iconURL:"https://i.postimg.cc/tRcXWWc0/Png-Item-613187.png" })
+        .setTimestamp()
+        .setFooter({ text: client.user.username, iconURL: client.user.avatarURL()});
+
+        if (message.mentions.has(client.user.id)){
+            sEmbed.setTitle("Bro Don't Fucking Mention me, Use Prefix Instead");
+            return message.channel.send({embeds: [sEmbed]})
+            
+        }
 
         if (!args[0]) {
             //console.log(message)
@@ -91,7 +102,7 @@ module.exports = {
                                     // message.channel.send("thats it")
                                     console.log("SAUCE FOUND!")
                                 } else {
-                                    message.channel.send(" :x: Sadly, there is no SAUCE <:PePe_hands:595077130665197579>")
+                                    message.channel.send(" :x: Sadly, Couldn't find the SAUCE <:PePe_hands:595077130665197579>")
                                 }
                                 break;
                             }

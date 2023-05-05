@@ -9,10 +9,14 @@ module.exports = {
         // ...
         const file = new AttachmentBuilder('https://media.discordapp.net/attachments/609551120385310751/1103869703660773446/6mp2lr192xwa1.jpg');
         const exampleEmbed = new EmbedBuilder()
-            .setTitle('Some title')
-            .setImage('attachment://discordjs.png');
+            // .setTitle('Some title')
+            //.setImage('https://media.discordapp.net/attachments/609551120385310751/1103869703660773446/6mp2lr192xwa1.jpg');
+            .setImage('attachment://6mp2lr192xwa1.jpg');
 
-		await interaction.reply({ files: [file] });
-        await interaction.editReply({  embeds: [exampleEmbed],files: [file] });
+            await interaction.deferReply({ ephemeral: false });
+        //await interaction.editReply({  embeds: [exampleEmbed]});
+
+
+        await interaction.editReply({ embeds: [exampleEmbed], files: [file] });
 	},
 }
