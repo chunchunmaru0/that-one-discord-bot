@@ -6,7 +6,7 @@ module.exports = {
 		.setName('nhentai')
 		.setDescription('Displays The given NukeCode Tags and stuff '),
 	async execute(interaction,client) {
-        await interaction.reply("Being Developed")
+        await interaction.reply("Being Developed, Use Prefix for now")
     },
 
     //For Prefix
@@ -18,6 +18,10 @@ module.exports = {
 	accessableby: "",
 
 	run: async (client, message, args) => {
+        if (!message.channel.nsfw){
+            await message.channel.send("Bro it's not foooking NSFW Channel.")
+            return
+        }
 		await message.channel.send({ embeds: [await sendEmbed(message,client,args)] });
         
        
@@ -26,6 +30,8 @@ module.exports = {
 
 async function sendEmbed(msgOrInter,client,args){
     return new Promise(async resolve =>{
+        
+        
         console.log(args)
         const sEmbed = new EmbedBuilder()
         .setColor('#C32B4E')
@@ -42,9 +48,10 @@ async function sendEmbed(msgOrInter,client,args){
         if (!args[0]) {
             //random nhentai
             console.log("inside no args")
-            let n =Math.floor(Math.random() * (6 - 3) ) + 3;
+            let n =Math.floor(Math.random() * (6 - 4) ) + 4;
             //let n =6;
-            nuke = Math.floor((Math.random()*0.9+0.1)*Math.pow(10,n))
+            //nuke = Math.floor((Math.random()*0.9+0.1)*Math.pow(10,n))
+            nuke = Math.floor(Math.random() * (460000 - 200066) ) + 200066; //453912-199999
             console.log(n, nuke);
             const hentaiObj = await doNhentai(nuke)
             nHentaiEmbedder(hentaiObj)

@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const fs = require('node:fs');
 const path = require('node:path');
 const { execute } = require('./commands/utility/ping');
+const {tiktok} = require('./tiktok.js')
 
 
 dotenv.config();
@@ -50,8 +51,13 @@ client.once(Events.ClientReady, () => {
 
 
 client.on('messageCreate', async message => {
+	if (message.channel.id == 1103353985903104102){
+		if (message.author.bot) return;
+		tiktok(client,message);
+	}
 
 	
+
 	if (message.author.bot) return;
 	
 	if (message.content.includes("@here") || message.content.includes("@everyone") || message.type == "REPLY") return;
