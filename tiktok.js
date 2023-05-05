@@ -10,15 +10,24 @@ module.exports = {
             return;
         }
 
-        const link = message.content;
+        const content = message.content;
+        console.log(content)
+        let linkArr = (content.slice().trim().split(/ +/g))
+        let link = linkArr.shift().toLowerCase();
         console.log(link)
+
 
         try {
             ttdl.getInfo(link)
                 .then(async (result) => {
-                    //console.log(result);
+                    console.log(result);
+                    if(result.sucess == false) return
+                    //console.log("here");
+                    if(result.video.url.wm == undefined) return;
+                    
                     let videoLink = result.video.url.wm;
                     let name= result.author.name;
+
 
                     const file = new AttachmentBuilder(videoLink)
                     .setName(`${name}.mp4`)
@@ -27,7 +36,7 @@ module.exports = {
 
                     console.log(file)
                     await message.reply({files:[file]})
-                    // .then(setTimeout(() => { message.suppressEmbeds(true) }, 5000));
+                    .then(setTimeout(() => { message.suppressEmbeds(true) }, 5000));
                 })
         } catch (error) {
             console.log(error)
