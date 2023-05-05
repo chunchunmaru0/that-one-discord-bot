@@ -9,7 +9,8 @@ module.exports = {
     .setDescription('Replies with User with MEMEs!'),
     async execute(interaction,client) {
         //console.log(interaction,client)
-        await interaction.reply({files: [{ attachment: await imgSend() }]});
+        await interaction.deferReply();
+        await interaction.editReply({files: [{ attachment: await imgSend() }]});
     },
     name: "meme",
     aliases: ["m", "memes"],
