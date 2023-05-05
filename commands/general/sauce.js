@@ -25,7 +25,7 @@ module.exports = {
                 //console.log(Attachment)
                 Attachment.forEach(function (attachment) {
                     var link = attachment.url
-                    console.log(link);
+                    //console.log(link);
 
                     getSauce(link);
                 })
@@ -36,7 +36,7 @@ module.exports = {
             }
         } else {
             var link = args[0];
-            console.log(link)
+            //console.log(link)
             getSauce(link);
         }
         function getSauce(link) {
@@ -48,13 +48,18 @@ module.exports = {
                     .then(function (jsonObj) {
                         var c = 0;
 
-
+                       if(jsonObj.header.status == -4){
+                            message.channel.send(":x: Use IMAGE baaaka!!  <:HeyHey:760752655881994250>")
+                            console.log("Not Img")
+                            return
+                        }
                         var results = jsonObj.results;
+                        console.log(results)
                         for (var call of results) {
 
 
                             var data = call.header
-                            console.log(call.data)
+                            //console.log(call.data)
                             var similarity = data.similarity;
                             var thumbnail = data.thumbnail;
                             var index_name = data.index_name;
@@ -92,7 +97,7 @@ module.exports = {
                             }
                             var url = mainValue.ext_urls;
 
-                            
+
                             console.log("similarity:", similarity, "source:", source, "year:", year, "index-name:", index_name, "External Url:", url);
 
 
@@ -104,35 +109,38 @@ module.exports = {
 
                             if (title != undefined) { embed.addFields({ name: "**Title:**", value: title }) }
                             if (url != undefined && url != "") {
-                                if (Array.isArray(url)){
+                                if (Array.isArray(url)) {
                                     embed.setURL(url[0])
                                     embed.addFields({ name: "**External Url:**", value: url[0] })
                                 }
-                                }
-                                console.log(creator)
-                            
+                            }
+                            //console.log(creator)
+
                             if (source != undefined && source != "") { embed.addFields({ name: "**Source:**", value: source }) }
-                            if (creator != undefined && creator != "") { 
-                                if (Array.isArray(creator)){
+                            if (creator != undefined && creator != "") {
+                                if (Array.isArray(creator)) {
                                     embed.addFields({ name: "**Creator:**", value: creator[0] })
-                                    
+
                                 }
-                                }
+                            }
                             if (pixiv_id != undefined && pixiv_id != "") { embed.addFields({ name: "**Pixiv ID:**", value: pixiv_id.toString() }) }
                             if (member_name != undefined && member_name != "") { embed.addFields({ name: "**Member Name:**", value: member_name }) }
-                            if (drawr_id != undefined && drawr_id != "") { embed.addFields({ name: "**Drawr ID**", value: drawr_id }) }
-                            if (da_id != undefined && da_id != "") { embed.addFields({ name: "**Deviantart ID:**", value: da_id }) }
-                            if (author_name != undefined && author_name != "") { embed.addFields({ name: "**Author Name**", value: author_name }) }
+                            if (drawr_id != undefined && drawr_id != "") { embed.addFields({ name: "**Drawr ID**", value: drawr_id.toString() }) }
+                            if (da_id != undefined && da_id != "") { embed.addFields({ name: "**Deviantart ID:**", value: da_id.toString() }) }
+                            if (author_name != undefined && author_name != "") { embed.addFields({ name: "**Author Name**", value: author_name.toString() }) }
                             if (author_url != undefined && author_url != "") { embed.addFields({ name: "**Author url**", value: author_url }) }
-                            if (danbooru_id != undefined && danbooru_id != "") { embed.addFields({ name: "**Danbooru ID:**", value: danbooru_id }) }
+                            if (danbooru_id != undefined && danbooru_id != "") {
+                                //console.log(danbooru_id)
+                                embed.addFields({ name: "**Danbooru ID:**", value: danbooru_id.toString() })
+                            }
                             if (material != undefined && material != "") { embed.addFields({ name: "**Material:**", value: material }) }
                             if (character != undefined && character != "") { embed.addFields({ name: "**Character:**", value: character }) }
-                            if (aniDb_id != undefined && aniDb_id != "") { embed.addFields({ name: "**AniDB ID:**", value: aniDb_id }) }
-                            if (year != undefined && year != "") { embed.addFields({ name: "**Year:**", value: year }) }
-                            if (part != undefined && part != "") { embed.addFields({ name: "**Part:**", value: part }) }
-                            if (est_time != undefined && est_time != "") { embed.addFields({ name: "**Estimated Time:**", value: est_time }) }
-                            if (index_name != undefined && index_name != "") { embed.addFields({ name: "**Index:**", value: index_name }) }
-                            if (source != undefined && source != "") { embed.addFields({ name: "**Source:**", value: source }) }
+                            if (aniDb_id != undefined && aniDb_id != "") { embed.addFields({ name: "**AniDB ID:**", value: aniDb_id.toString() }) }
+                            if (year != undefined && year != "") { embed.addFields({ name: "**Year:**", value: year.toString() }) }
+                            if (part != undefined && part != "") { embed.addFields({ name: "**Part:**", value: part.toString() }) }
+                            if (est_time != undefined && est_time != "") { embed.addFields({ name: "**Estimated Time:**", value: est_time.toString() }) }
+                            if (index_name != undefined && index_name != "") { embed.addFields({ name: "**Index:**", value: index_name.toString() }) }
+                            if (source != undefined && source != "") { embed.addFields({ name: "**Source:**", value: source.toString() }) }
 
                             message.channel.send({ embeds: [embed] });
                             c = c + 1;
