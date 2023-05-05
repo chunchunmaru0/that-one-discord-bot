@@ -42,8 +42,8 @@ async function sendEmbed(msgOrInter,client,args){
         if (!args[0]) {
             //random nhentai
             console.log("inside no args")
-            //let n = Math.floor(Math.random() * 6) + 2
-            let n =6;
+            let n =Math.floor(Math.random() * (6 - 3) ) + 3;
+            //let n =6;
             nuke = Math.floor((Math.random()*0.9+0.1)*Math.pow(10,n))
             console.log(n, nuke);
             const hentaiObj = await doNhentai(nuke)
