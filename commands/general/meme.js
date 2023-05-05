@@ -21,11 +21,14 @@ module.exports = {
 
     run: async (client, message, args) => {
         let msg = await message.channel.send("Generating...")
-
+        
         try {
-            message.channel.send({//channel.send
+           
+            message.channel.send(
+                {//channel.send
                 files: [await imgSend()]  //files: [{ attachment: await imgSend() }]
-            }).then(async msg => {
+                }
+            ).then(async msg => {
                 try {
                     await msg.react('581795233067433985');
                     await msg.react('595108561831460875');
@@ -34,15 +37,16 @@ module.exports = {
 
                     console.error("failed to add emoji")
                 }
-            }).then(message.delete(2000)).then(msg.delete(2000))
+            }).then(message.delete()).then(msg.delete())
         } catch (error) {
+            message.channel.send(error).then(msg.delete())
             console.log(error)
         }
     }
 }
 async function imgSend() {
 
-    return new Promise(resolve => {
+    return new Promise((resolve,reject) => {
         var rng = Math.floor(Math.random() * 8) + 0;
         var url = new Array;
         console.log("url rng is: " + rng)
@@ -81,15 +85,18 @@ async function imgSend() {
                     console.log("Meme rng is" + rng)
                     if (rng == 25) { rng = 0 }
                     var imgFile = imgUrl[rng];
-                    console.log(imgFile, imgUrl)
+                   
+                    //console.log(imgFile, imgUrl)
                     if (imgFile == undefined) {
-                        resolve('Err... Something went wrong!')
+                        
+                        reject('Err... Something went wrong!')
                         return
 
                     }
                     if (imgFile.startsWith("https://v.")) {
                         let vidUrl = children[rng].data.media.reddit_video.fallback_url;
-                        imgFile = vidUrl+"mp4"; //imgFile + "/DASH_1080.mp4"
+                        imgFile = vidUrl+".mp4"; //imgFile + "/DASH_1080.mp4"
+                        console.log(imgFile, vidUrl)
                     }
                     // if (imgFile != undefined) {
 
