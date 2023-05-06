@@ -4,6 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { execute } = require('./commands/utility/ping');
 const {tiktok} = require('./tiktok.js')
+const {pinterest} = require('./pinterest.js')
 
 
 dotenv.config();
@@ -54,6 +55,7 @@ client.on('messageCreate', async message => {
 	if (message.channel.id == 1103353985903104102){
 		if (message.author.bot) return;
 		tiktok(client,message);
+		pinterest(client, message)
 	}
 
 	
