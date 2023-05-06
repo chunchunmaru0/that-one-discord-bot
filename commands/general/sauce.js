@@ -64,6 +64,10 @@ module.exports = {
                             console.log("Not Img")
                             return
                         }
+                        if (jsonObj.results== undefined){
+                            console.log('error')
+                            return
+                        }
                         var results = jsonObj.results;
                         console.log(results)
                         for (var call of results) {
