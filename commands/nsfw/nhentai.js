@@ -13,7 +13,7 @@ module.exports = {
     name: "nhentai",
 	aliases: ["nh", "nuke"],
 	usage: "",
-	category: "fun",
+	category: "nsfw",
 	description: "Displays The given NukeCode Tags and stuff '",
 	accessableby: "",
 
