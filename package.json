@@ -13,6 +13,7 @@
     "cheerio": "^1.0.0-rc.12",
     "discord.js": "^14.10.2",
     "dotenv": "^16.0.3",
+    "mongoose": "^7.1.0",
     "node-tiklydown": "^1.0.0",
     "tiktok-video-downloader": "^1.0.4"
   }

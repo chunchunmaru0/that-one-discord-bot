@@ -2,10 +2,13 @@ const { Client, Events, Collection, Partials, GatewayIntentBits } = require('dis
 const dotenv = require('dotenv');
 const fs = require('node:fs');
 const path = require('node:path');
-const { execute } = require('./commands/utility/ping');
 const {tiktok} = require('./tiktok.js')
 const {pinterest} = require('./pinterest.js')
+const { prefix } = require('./config.json');
+const {sendH}=require('./sendHentai.js')
 
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://192.168.1.12:27017/kskDB')
 
 dotenv.config();
 
@@ -46,8 +49,12 @@ for (const folder of commandFolders) { //searches for commands on every dir
 }
 
 
-client.once(Events.ClientReady, () => {
-	console.log('Ready!');
+client.once(Events.ClientReady, c => {
+	console.log(`Ready! Logged in as ${c.user.tag}`);
+	sendH(client)
+	setInterval(() => {
+		sendH(client)
+	}, 600000);
 });
 
 
@@ -63,11 +70,11 @@ client.on('messageCreate', async message => {
 	if (message.author.bot) return;
 	
 	if (message.content.includes("@here") || message.content.includes("@everyone") || message.type == "REPLY") return;
-	if (message.mentions.has(client.user.id) || message.content.startsWith('$')) {
+	if (message.mentions.has(client.user.id) || message.content.startsWith(`${prefix}`)) {
 		
 		//console.log(message.content.slice(`<@${client.user.id}> `.length).trim().split(/ +/g));
 		
-		let args = message.content.slice('$'.length).trim().split(/ +/g) || message.content.slice(`<@${client.user.id}> `.length).trim().split(/ +/g) //either has prefix and trim it or bot is mentioned and trim it
+		let args = message.content.slice(`${prefix}`.length).trim().split(/ +/g) || message.content.slice(`<@${client.user.id}> `.length).trim().split(/ +/g) //either has prefix and trim it or bot is mentioned and trim it
 		let cmd;
 		if (message.mentions.has(client.user.id)){
 			cmd = (args[1]) //after slicing if the bot is mentioned the command is in 1st index

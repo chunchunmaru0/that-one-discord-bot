@@ -19,7 +19,7 @@ module.exports = {
 	accessableby: "",
 
 	run: async (client, message, args) => {
-		message.channel.send("Sample");
+		await message.channel.send("Sample");
 	}
 }
 */
