@@ -22,7 +22,7 @@ module.exports = {
 }
 
 async function getNewMemesReddit() {
-    let getMemes = new RedditCheckPost('new', 'Memes')
+    let getMemes = new RedditCheckPost('hot', 'Memes')
     try {
         let MemesRes = await getMemes.meme();
         return (MemesRes)
