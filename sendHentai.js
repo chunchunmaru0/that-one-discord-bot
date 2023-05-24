@@ -11,7 +11,7 @@ module.exports = {
   async sendH(discordClient) {
     // console.log("Working as Intended")
     const channel_id = '1110771612061540472'
-    let subreddits = ['pornhwa', 'hentai', 'HENTAI_GIF']
+    let subreddits = ['pornhwa', 'hentai','ecchi','HENTAI_GIF','Artistic_Hentai']
 
     try {
       // Connect to the MongoDB server
