@@ -14,7 +14,7 @@ class RedditCheckPost {
         return redditExtract(subreddits,this.filter,this.dbName);
     }
     cosplay(){
-        let subreddits = ['CosplayLewd','Waifus34','GeekyBikini','GeekyChan','cosplaybabes','CosplayNsfw','CosplayPornVideos','NudeCosplay','AhegaoCosplay','nsfwcosplay']
+        let subreddits = ['CosplayLewd','CosplayNsfw','CosplayPornVideos','NudeCosplay','AhegaoCosplay','Waifus34','GeekyBikini','GeekyChan','cosplaybabes','nsfwcosplay']
         return redditExtract(subreddits,this.filter,this.dbName);
     }
 }

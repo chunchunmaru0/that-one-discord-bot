@@ -52,14 +52,14 @@ async function sendEmbed(msgOrInter,client,args){
             //let n =6;
             //nuke = Math.floor((Math.random()*0.9+0.1)*Math.pow(10,n))
             nuke = Math.floor(Math.random() * (460000 - 200066) ) + 200066; //453912-199999
-            console.log(n, nuke);
+            //console.log(n, nuke);
             const hentaiObj = await doNhentai(nuke)
             nHentaiEmbedder(hentaiObj)
 
 
             
         } else {
-            console.log("Found args")
+            //console.log("Found args")
             nuke= args[0];
 
             const hentaiObj = await doNhentai(nuke)
@@ -130,7 +130,7 @@ async function sendEmbed(msgOrInter,client,args){
 
 async function doNhentai(code){
     return new Promise(async resolve =>{
-        console.log("doing this");
+        // console.log("doing this");
         const response = await fetch(`https://nhentai-net.translate.goog/api/gallery/${code}?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en-US&_x_tr_pto=wapp`)
         const responseObj =  response.json();
         const nhenRes = await responseObj;
@@ -195,7 +195,7 @@ async function doNhentai(code){
     
     
         }
-        console.log(resultObj);
+        //console.log(resultObj);
         resolve(resultObj);
     })
 

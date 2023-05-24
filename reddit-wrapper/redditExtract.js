@@ -20,7 +20,7 @@ async function redditExtract(subreddits, filter, collName) {
                 //check if there's already such post in my db
                 if (!existingPost) {
                     await collection.insertOne({ id: post.id, permalink: post.permalink, url: post.url });
-                    console.log('New post:', post.title, 'Subreddit:', subreddit);
+                    console.log('New post:', post.title, 'Subreddit:',`\x1b[32m ${subreddit}\x1b[0m`);
                     let extractedPayload = (extractRedditPost(post))
                     if (extractedPayload !== undefined) {
                         //Send to Discord
