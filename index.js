@@ -1,4 +1,4 @@
-const { Client, Events, Collection, Partials, GatewayIntentBits } = require('discord.js');;
+const { Client, Events, Collection,GatewayIntentBits, ActivityType } = require('discord.js');;
 const dotenv = require('dotenv');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -6,6 +6,8 @@ const {tiktok} = require('./tiktok.js')
 const {pinterest} = require('./pinterest.js')
 const { prefix } = require('./config.json');
 const {sendH}=require('./sendHentai.js')
+const {sendCos} = require('./sendCosplay.js')
+const {sendMemes} = require('./sendMemes.js')
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://192.168.1.12:27017/kskDB')
@@ -51,9 +53,17 @@ for (const folder of commandFolders) { //searches for commands on every dir
 
 client.once(Events.ClientReady, c => {
 	console.log(`Ready! Logged in as ${c.user.tag}`);
+	client.user.setActivity({
+		name: prefix,
+		type: ActivityType.Playing
+	})
+	sendMemes(client)
+	sendCos(client)
 	sendH(client)
 	setInterval(() => {
 		sendH(client)
+		sendCos(client)
+		sendMemes(client)
 	}, 600000);
 });
 
