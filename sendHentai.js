@@ -1,5 +1,7 @@
 const MongoClient = require('mongodb').MongoClient;
 const { extractRedditPost } = require('./reddit-wrapper/postExtractor.js')
+const { AttachmentBuilder } = require('discord.js')
+
 // Connection URL and database name
 const url = 'mongodb://192.168.1.12:27017';
 const dbName = 'introPerVertDB';
@@ -7,8 +9,8 @@ const dbName = 'introPerVertDB';
 module.exports = {
 
   async sendH(discordClient) {
-    console.log("Working as Intended")
-    const channel_id = '586776239650635777'
+    // console.log("Working as Intended")
+    const channel_id = '1110771612061540472'
     let subreddits = ['pornhwa', 'hentai', 'HENTAI_GIF']
 
     try {
@@ -34,9 +36,15 @@ module.exports = {
             // Log the new post
             let extractedPayload = (extractRedditPost(post))
             if (extractedPayload !== undefined) {
-              console.log('New post:', post.title);
+              console.log('New post:', post.title, 'Subreddit:',`\x1b[32m ${subreddit}\x1b[0m`);
               const channel = await discordClient.channels.fetch(channel_id);
-              await channel.send(extractedPayload.url);
+              if (extractedPayload.url.includes('redgifs')) {
+                await channel.send(extractedPayload.url);
+              } else {
+                const file = new AttachmentBuilder(extractedPayload.url);
+                await channel.send({ files: [file] });
+              }
+              // await channel.send(extractedPayload.url);
             }
 
 
@@ -50,7 +58,11 @@ module.exports = {
       // Close the MongoDB connection
       mongoClient.close();
     } catch (error) {
-      console.error('Error:', error);
+      if (error.code === 40005) {
+        await channel.send(val.url);
+      } else {
+        console.error('Error:', error);
+      }
     }
 
   }
