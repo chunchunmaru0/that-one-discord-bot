@@ -12,13 +12,16 @@ module.exports = {
             for (const val of values) {
 
                 try {
-                    console.log(val.url)
                     if (val.url.includes('redgifs')) {
                         await channel.send(val.url);
+                    }else if(!(val.url.startsWith('https://i')) && !(val.url.startsWith('https://v')) ){
+                        await channel.send(val.url);
+                        console.log(val.url)
                     }else {
                         const file = new AttachmentBuilder(val.url);
                         await channel.send({ files: [file] });
                     }
+
                     //await channel.send(val.url);
 
 
@@ -41,9 +44,13 @@ module.exports = {
 
 async function getNewCosplayReddit() {
     let getCosplay = new RedditCheckPost('new', 'cosplay')
+    let getCosplayHot = new RedditCheckPost('hot', 'cosplay')
     try {
         let cosplayRes = await getCosplay.cosplay();
-        return (cosplayRes)
+        let cosplayResHot = await getCosplayHot.cosplay();
+
+        //console.log([...cosplayRes,...cosplayResHot])
+        return [...cosplayRes,...cosplayResHot]
     } catch (error) {
 
     }
