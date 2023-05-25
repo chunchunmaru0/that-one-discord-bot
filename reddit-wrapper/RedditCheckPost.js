@@ -29,6 +29,18 @@ class RedditCheckPost {
         let subreddits = ['thighdeology','muchihentai','ThighGapHentai','Thighjobhentai','thighhighhentai','thick_hentai']
         return redditExtract(subreddits,this.filter,this.dbName);
     }
+    general(){
+        let subreddits =['pornID','porn_gifs','BlowJob','SheFucksHim','porn']
+        return redditExtract(subreddits,this.filter,this.dbName);
+    }
+    porn(){
+        let subreddits =['PornStarletHQ','PornstarsHD']
+        return redditExtract(subreddits,this.filter,this.dbName);
+    }
+    tiktokPorn(){
+        let subreddits =['tiktokporn','TikTokXXX']
+        return redditExtract(subreddits,this.filter,this.dbName);
+    }
 }
 
 module.exports = RedditCheckPost;
