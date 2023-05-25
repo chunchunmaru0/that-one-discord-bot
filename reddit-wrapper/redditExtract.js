@@ -9,7 +9,7 @@ async function redditExtract(subreddits, filter, collName) {
         const db = mongoClient.db(dbName);
         let resArr = [];
         for (const subreddit of subreddits) {
-            const response = await fetch(`https://www.reddit.com/r/${subreddit}/${filter}.json`)
+            const response = await fetch(`https://www.reddit.com/r/${subreddit}/${filter}.json`)//${filter} ?limit=100&t=all
             const data = await response.json();
             const posts = data.data.children.map(child => child.data); //Post Data from Reddit Response API
 

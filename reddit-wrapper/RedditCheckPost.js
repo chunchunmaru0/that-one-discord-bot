@@ -17,6 +17,18 @@ class RedditCheckPost {
         let subreddits = ['CosplayLewd','CosplayNsfw','CosplayPornVideos','NudeCosplay','AhegaoCosplay','Waifus34','GeekyBikini','GeekyChan','cosplaybabes','nsfwcosplay']
         return redditExtract(subreddits,this.filter,this.dbName);
     }
+    ecchi(){
+        let subreddits = ['Artistic_Ecchi']
+        return redditExtract(subreddits,this.filter,this.dbName);
+    }
+    ai_gen(){
+        let subreddits = ['AIhentai','Artistic_AI','HentaiAI','AiUncensored'] //AIpornhub AI_porn_general AI_Girl NovelAI_Hentai
+        return redditExtract(subreddits,this.filter,this.dbName);
+    }
+    thigh(){
+        let subreddits = ['thighdeology','muchihentai','ThighGapHentai','Thighjobhentai','thighhighhentai','thick_hentai']
+        return redditExtract(subreddits,this.filter,this.dbName);
+    }
 }
 
 module.exports = RedditCheckPost;

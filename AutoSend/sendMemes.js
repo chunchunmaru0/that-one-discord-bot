@@ -1,4 +1,4 @@
-const RedditCheckPost = require('./reddit-wrapper/RedditCheckPost.js');
+const RedditCheckPost = require('../reddit-wrapper/RedditCheckPost');
 
 module.exports = {
 

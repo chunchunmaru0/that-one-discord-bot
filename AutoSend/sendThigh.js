@@ -1,13 +1,13 @@
-const RedditCheckPost = require('./reddit-wrapper/RedditCheckPost.js');
+const RedditCheckPost = require('../reddit-wrapper/RedditCheckPost');
 const { AttachmentBuilder } = require('discord.js');
 
 module.exports = {
 
-    async sendCos(discordClient) {
-        const channel_id = '586776438632349696'
+    async sendThigh(discordClient) {
+        const channel_id = '1111054182561091604'
         const channel = await discordClient.channels.fetch(channel_id);
-
-        let values = await getNewCosplayReddit()
+        let errCount = 1;
+        let values = await getThighReddit()
         if (values.length !== 0) {
             for (const val of values) {
 
@@ -30,28 +30,26 @@ module.exports = {
                         await channel.send(val.url);
                     }else {
                         console.log(error)
+                        console.log(errCount);
+                        errCount++
                         //await channel.send("Something Went Wrong!")
                         //https://files.catbox.moe/6udng2.JPG
                     }
                 }
 
-
+ 
             }
         }
 
     }
 }
 
-async function getNewCosplayReddit() {
-    let getCosplay = new RedditCheckPost('new', 'cosplay')
-    let getCosplayHot = new RedditCheckPost('hot', 'cosplay')
+async function getThighReddit() {
+    let getThighs = new RedditCheckPost('new', 'thighdeology')
     try {
-        let cosplayRes = await getCosplay.cosplay();
-        let cosplayResHot = await getCosplayHot.cosplay();
-
-        //console.log([...cosplayRes,...cosplayResHot])
-        return [...cosplayRes,...cosplayResHot]
+        let ThighsRes = await getThighs.thigh();
+        return ThighsRes
     } catch (error) {
-
+        console.log(error)
     }
 }
