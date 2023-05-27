@@ -5,7 +5,8 @@ const path = require('node:path');
 const {tiktok} = require('./tiktok.js')
 const {pinterest} = require('./pinterest.js')
 const { prefix } = require('./config.json');
-const {onceReady}=require('./onceReady.js')
+const { onceReady }=require('./onceReady.js')
+
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://192.168.1.12:27017/kskDB')
 
@@ -48,13 +49,14 @@ for (const folder of commandFolders) { //searches for commands on every dir
 }
 
 
-client.once(Events.ClientReady, c => {
+client.once(Events.ClientReady, async c => {
 	console.log(`Ready! Logged in as ${c.user.tag}`);
 	client.user.setActivity({
 		name: prefix,
 		type: ActivityType.Playing
 	})
-	onceReady(client)
+	await onceReady(client)
+	//console.log(counter.getRequestCounter())
 });
 
 
