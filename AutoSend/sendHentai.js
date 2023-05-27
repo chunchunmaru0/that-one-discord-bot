@@ -12,7 +12,7 @@ module.exports = {
     // console.log("Working as Intended")
     const channel_id = '1110771612061540472'
     const channel = await discordClient.channels.fetch(channel_id);
-    let subreddits = ['pornhwa', 'hentai','ecchi','HENTAI_GIF','Artistic_Hentai']
+    let subreddits = ['pornhwa+IWantToBeHerHentai2', 'hentai', 'ecchi','funpiece', 'HENTAI_GIF', 'JerkOffToAnime', 'Artistic_Hentai']
 
     try {
       // Connect to the MongoDB server
@@ -37,13 +37,19 @@ module.exports = {
             // Log the new post
             let extractedPayload = (extractRedditPost(post))
             if (extractedPayload !== undefined) {
-              console.log('New post:', post.title, 'Subreddit:',`\x1b[32m ${subreddit}\x1b[0m`);
-              
+              console.log('\x1b[1m 🔥 New post:💦 \x1b[0m', post.title, 'Subreddit:', `\x1b[32m ${post.subreddit}\x1b[0m`);
+
               if (extractedPayload.url.includes('redgifs')) {
                 await channel.send(extractedPayload.url);
               } else {
                 const file = new AttachmentBuilder(extractedPayload.url);
-                await channel.send({ files: [file] });
+                await channel.send({ files: [file] }).catch(async err => {
+                  if (err.code === 40005) {
+                    await channel.send(extractedPayload.url);
+                  } else {
+                    console.error('Error:', err);
+                  }
+                });
               }
               // await channel.send(extractedPayload.url);
             }
@@ -59,11 +65,9 @@ module.exports = {
       // Close the MongoDB connection
       mongoClient.close();
     } catch (error) {
-      if (error.code === 40005) {
-        await channel.send(extractedPayload.url);
-      } else {
-        console.error('Error:', error);
-      }
+
+      console.error('Error:', error);
+
     }
 
   }
