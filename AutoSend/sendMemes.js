@@ -6,8 +6,7 @@ module.exports = {
         const channel_id = '594964222677614592'
         const channel = await discordClient.channels.fetch(channel_id);
 
-        let values = await getNewMemesReddit()
-        console.log(values)
+        let values = await getNewMemesReddit();
         if (values === undefined) return
         if (values.length !== 0) {
             for (const val of values) {
